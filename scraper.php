@@ -13,7 +13,7 @@ $dom = new simple_html_dom();
 $dom->load($html);
 $targets = array();
 
-foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) {
+foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item)) {
   if (stristr($item->href,'planning-alert') {
     $targets[] .= $item->href;
   }
