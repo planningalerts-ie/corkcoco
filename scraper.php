@@ -15,14 +15,24 @@ $targets = array();
 
 foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) {
   if (stristr($item->href,'planning-alert')) {
-    $targets[] .= $item->href;
+    $targets[] .= 'https://mapalerts.corkcoco.ie/en/alerts' . $item->href;
   }
 }
-unset($dom);
+unset($dom,$html);
 
-print_r($targets);
+// Collect KML embedded in those URLs
+
+foreach ($targets as $target) {
+	$html = scraperwiki::scrape($target);
+	echo getKML($html) . "\n";
+}
 
 
+function getKML($html) {
+	$tempA = explode('www.mapalerter.ie\/maie\/kml\/',$html);
+	$tempB = explode('"]',$tempA[1]);
+	return "http://www.mapalerter.ie/maie/kml/" . $tempB[0];
+}
 
 // // Write out to the sqlite database using scraperwiki library
 // scraperwiki::save_sqlite(array('name'), array('name' => 'susan', 'occupation' => 'software developer'));
