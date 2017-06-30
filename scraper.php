@@ -31,6 +31,7 @@ foreach ($targets as $target) {
 function getKML($html) {
 	$tempA = explode('www.mapalerter.ie\/maie\/kml\/',$html);
 	$tempB = explode('"]',$tempA[1]);
+	print_r($tempA);
 	return "http://www.mapalerter.ie/maie/kml/" . $tempB[0];
 }
 
