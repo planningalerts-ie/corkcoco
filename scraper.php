@@ -11,8 +11,9 @@ $html = scraperwiki::scrape("https://mapalerts.corkcoco.ie/en/alerts");
 // Find something on the page using css selectors
 $dom = new simple_html_dom();
 $dom->load($html);
-$items = $dom->find("table th a[style='color: #590f56 !important;']");
-print_r($items);
+foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) {
+  echo $item->href . "\n";
+}
 
 
 
