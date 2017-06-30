@@ -23,7 +23,7 @@ unset($dom,$html);
 // Collect KML embedded in those URLs
 
 foreach ($targets as $target) {
-	$html = scraperwiki::scrape($target);
+	$html = file_get_contents($target);
 	echo getKML($html) . "\n";
 }
 
