@@ -21,11 +21,15 @@ foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) 
 unset($dom,$html);
 
 // Collect KML embedded in those URLs
-
+$kmls = array();
 foreach ($targets as $target) {
 	$fetch = file_get_contents($target);
-	echo getKML($fetch) . "\n";
+	$kml = 'http://www.mapalerter.ie/maie/kml/' . getKML($fetch);
+	
 }
+
+echo "....done.\n";
+
 
 
 function getKML($html) {
