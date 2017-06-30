@@ -24,6 +24,8 @@ unset($dom,$html);
 
 foreach ($targets as $target) {
 	$html = file_get_contents($target);
+	echo $html; 
+	die();
 	echo getKML($html) . "\n";
 }
 
