@@ -8,13 +8,19 @@ require 'scraperwiki/simple_html_dom.php';
 // Read in a page
 $html = scraperwiki::scrape("https://mapalerts.corkcoco.ie/en/alerts");
 
-// Find something on the page using css selectors
+// Collect alert mailer URLs to $targets
 $dom = new simple_html_dom();
 $dom->load($html);
-foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) {
-  echo $item->href . "\n";
-}
+$targets = array();
 
+foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) {
+  if (stristr($item->href,'planning-alert') {
+    $targets[] .= $item->href;
+  }
+}
+unset($dom);
+
+print_r($targets);
 
 
 
