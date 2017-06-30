@@ -15,13 +15,13 @@ $targets = array();
 
 foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) {
   if (stristr($item->href,'planning-alert')) {
-    $targets[] .= 'https://mapalerts.corkcoco.ie/en/alerts' . $item->href;
+    $targets[] .= 'https://mapalerts.corkcoco.ie' . $item->href;
   }
 }
 unset($dom,$html);
 
 // Collect KML embedded in those URLs
-print_r($targets);
+
 foreach ($targets as $target) {
 	$fetch = file_get_contents($target);
 	echo getKML($fetch) . "\n";
@@ -29,7 +29,7 @@ foreach ($targets as $target) {
 
 
 function getKML($html) {
-	$tempA = explode('www.mapalerter.ie',$html);
+	$tempA = explode("mapalerter.ie\/maie\/kml\/",$html);
 	$tempB = explode('"]',$tempA[1]);
 	#print_r($tempA);
 	return  $tempB[0];
