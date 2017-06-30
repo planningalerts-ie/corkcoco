@@ -23,10 +23,8 @@ unset($dom,$html);
 // Collect KML embedded in those URLs
 
 foreach ($targets as $target) {
-	$html = file_get_contents($target);
-	echo $html; 
-	die();
-	echo getKML($html) . "\n";
+	$fetch = file_get_contents($target);
+	echo getKML($fetch) . "\n";
 }
 
 
