@@ -29,10 +29,10 @@ foreach ($targets as $target) {
 
 
 function getKML($html) {
-	$tempA = explode('www.mapalerter.ie\\/maie\\/kml\\/',$html);
+	$tempA = explode('www.mapalerter.ie',$html);
 	$tempB = explode('"]',$tempA[1]);
 	#print_r($tempA);
-	return "http://www.mapalerter.ie/maie/kml/" . $tempB[0];
+	return  $tempB[0];
 }
 
 // // Write out to the sqlite database using scraperwiki library
