@@ -75,8 +75,7 @@ foreach ($targets as $target) {
 					'on_notice_from' => $on_notice_from,
 					'on_notice_to' => $on_notice_to
 				);
-			print_r($application);
-			die();
+
 			$existingRecords = scraperwiki::select("* from data where `council_reference`='" . $application['council_reference'] . "'");
 			if (sizeof($existingRecords) == 0) {
 				# print_r ($application);
@@ -95,19 +94,7 @@ echo "....done.\n";
 function getKML($html) {
     $tempA = explode("mapalerter.ie\/maie\/kml\/",$html);
     $tempB = explode('"]',$tempA[1]);
-    #print_r($tempA);
     return 'http://www.mapalerter.ie/maie/kml/' . $tempB[0];
 }
 
-// // Write out to the sqlite database using scraperwiki library
-// scraperwiki::save_sqlite(array('name'), array('name' => 'susan', 'occupation' => 'software developer'));
-//
-// // An arbitrary query against the database
-// scraperwiki::select("* from data where 'name'='peter'")
-
-// You don't have to do things with the ScraperWiki library.
-// You can use whatever libraries you want: https://morph.io/documentation/php
-// All that matters is that your final data is written to an SQLite database
-// called "data.sqlite" in the current working directory which has at least a table
-// called "data".
 ?>
