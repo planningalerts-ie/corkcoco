@@ -45,6 +45,8 @@ foreach ($targets as $target) {
        
         $statuspath = $blobparser->find('ul',0)->find('li',5);
         $status = trim(html_entity_decode(str_replace('Status: ','',$statuspath->plaintext)),ENT_QUOTES);
+        echo $status . "\n";
+        
         if (stristr('Decision Made Invalid Application Closed',$status)) {
             # exit this loop if old/unwanted application
             break; 
