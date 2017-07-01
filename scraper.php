@@ -1,4 +1,4 @@
-<?php 
+<?php
 // This is a template for a PHP scraper on morph.io (https://morph.io)
 // including some code snippets below that you should find helpful
 
@@ -25,7 +25,7 @@ $kmls = array();
 foreach ($targets as $target) {
 	$fetch = file_get_contents($target);
 	$kml =  simplexml_load_file(getKML($fetch));
-	foreach ($kml->Folder->Placemark as $item) {
+	foreach ($kml->Document->Folder->Placemark as $item) {
 		echo "Found " . str_replace("File Ref: ","",$item->name) . "\n";
 	}
 	
