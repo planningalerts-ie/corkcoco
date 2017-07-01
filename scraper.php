@@ -44,21 +44,21 @@ foreach ($targets as $target) {
         $blobparser->load($blob);
        
         $statuspath = $blobparser->find('ul',0)->find('li',5);
-        $status = trim(html_entity_decode(str_replace('<B>Status: </B>','',$statuspath->plaintext)),ENT_QUOTES);
+        $status = trim(html_entity_decode(str_replace('Status: ','',$statuspath->plaintext)),ENT_QUOTES);
         if (stristr('Decision Made Invalid Application Closed',$status)) {
             # exit this loop if old/unwanted application
             break; 
         }
         $receivedpath = $blobparser->find('ul',0)->find('li',6);
-        echo $receivedpath->plaintext . "\n";
-        $date_received = date($date_format,strtotime(trim(html_entity_decode(str_replace('<B>Application Received: </B>','',$receivedpath->plaintext)),ENT_QUOTES)));
+        #echo $receivedpath->plaintext . "\n";
+        $date_received = date($date_format,strtotime(trim(html_entity_decode(str_replace('Application Received: ','',$receivedpath->plaintext)),ENT_QUOTES)));
         $date_scraped = date($date_format);
         $on_notice_from = $date_received;
         $on_notice_to = date($date_format,(strtotime($on_notice_from) + 3024000)); # 35 days
         $addresspath = $blobparser->find('ul',0)->find('li',2);
-        $address = trim(html_entity_decode(str_replace('<B>Development Address: </B>','',$addresspath->plaintext)),ENT_QUOTES);
+        $address = trim(html_entity_decode(str_replace('Development Address: ','',$addresspath->plaintext)),ENT_QUOTES);
         $descriptionpath = $blobparser->find('ul',0)->find('li',3);
-        $description = trim(html_entity_decode(str_replace('<B>Development Description: </B>','',$descriptionpath->plaintext)),ENT_QUOTES);
+        $description = trim(html_entity_decode(str_replace('Development Description: ','',$descriptionpath->plaintext)),ENT_QUOTES);
         
         # http://maps.corkcoco.ie/planningenquirylitev3/Default.aspx?FullFileNumber=18a-175461&FromList=true
         $info_url = 'http://maps.corkcoco.ie/planningenquirylitev3/Default.aspx?FullFileNumber=18a-' . str_replace('/','',str_replace('/0','/',$council_reference)) . '&FromList=true';
