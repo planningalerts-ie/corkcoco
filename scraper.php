@@ -25,6 +25,7 @@ $kmls = array();
 foreach ($targets as $target) {
 	$fetch = file_get_contents($target);
 	$kml =  getKML($fetch);
+	echo $kml . "\n";
 	
 }
 
