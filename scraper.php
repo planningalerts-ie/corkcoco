@@ -24,7 +24,7 @@ unset($dom,$html);
 $kmls = array();
 foreach ($targets as $target) {
 	$fetch = file_get_contents($target);
-	$kml = 'http://www.mapalerter.ie/maie/kml/' . getKML($fetch);
+	$kml =  getKML($fetch);
 	
 }
 
@@ -36,7 +36,7 @@ function getKML($html) {
 	$tempA = explode("mapalerter.ie\/maie\/kml\/",$html);
 	$tempB = explode('"]',$tempA[1]);
 	#print_r($tempA);
-	return  $tempB[0];
+	return 'http://www.mapalerter.ie/maie/kml/' . $tempB[0];
 }
 
 // // Write out to the sqlite database using scraperwiki library
