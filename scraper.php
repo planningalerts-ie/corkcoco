@@ -33,7 +33,6 @@ foreach ($targets as $target) {
 
     foreach ($kml->Document->Folder->Placemark as $item) {
         $council_reference = str_replace("File Ref: ","",$item->name);
-        echo "Found $council_reference\n";
 
         $point = explode(',',$item->Point->coordinates);
         $lat = $point[1];
@@ -45,9 +44,9 @@ foreach ($targets as $target) {
        
         $statuspath = $blobparser->find('ul',0)->find('li',5);
         $status = trim(html_entity_decode(str_replace('Status: ','',$statuspath->plaintext)),ENT_QUOTES);
-        echo $status . "\n";
         
         if (!(stristr('Decision Made Invalid Application Closed',$status))) {
+		        echo "Found $council_reference\n";
 			$receivedpath = $blobparser->find('ul',0)->find('li',6);
 			#echo $receivedpath->plaintext . "\n";
 			$date_received = date($date_format,strtotime(trim(html_entity_decode(str_replace('Application Received: ','',$receivedpath->plaintext)),ENT_QUOTES)));
