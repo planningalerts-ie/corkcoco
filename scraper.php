@@ -42,21 +42,21 @@ foreach ($targets as $target) {
         $blob = (string)$item->description;
         $blobparser = new simple_html_dom();
         $blobparser->load($blob);
-        
-        $statuspath = $parsethis->find('ul',0)->find('li',5);
+       
+        $statuspath = $blobparser->find('ul',0)->find('li',5);
         $status = trim(html_entity_decode(str_replace('<B>Status: </B>'.'',$statuspath->plaintext)),ENT_QUOTES);
         if (stristr('Decision Made Invalid Application Closed',$status)) {
             # exit this loop if old/unwanted application
             break; 
         }
-        $receivedpath = $parsethis->find('ul',0)->find('li',6);
+        $receivedpath = $blobparser->find('ul',0)->find('li',6);
         $date_received = date($date_format,strtotime(trim(html_entity_decode(str_replace('<B>Application Received: </B>'.'',$receivedpath->plaintext)),ENT_QUOTES)));
         $date_scraped = date($date_format);
         $on_notice_from = $date_received;
         $on_notice_to = date($date_format,(strtotime($on_notice_from) + 3024000)); # 35 days
-        $addresspath = $parsethis->find('ul',0)->find('li',2);
+        $addresspath = $blobparser->find('ul',0)->find('li',2);
         $address = trim(html_entity_decode(str_replace('<B>Development Address: </B>'.'',$addresspath->plaintext)),ENT_QUOTES);
-        $descriptionpath = $parsethis->find('ul',0)->find('li',3);
+        $descriptionpath = $blobparser->find('ul',0)->find('li',3);
         $description = trim(html_entity_decode(str_replace('<B>Development Description: </B>'.'',$descriptionpath->plaintext)),ENT_QUOTES);
         
         # http://maps.corkcoco.ie/planningenquirylitev3/Default.aspx?FullFileNumber=18a-175461&FromList=true
