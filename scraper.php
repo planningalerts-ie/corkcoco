@@ -50,6 +50,7 @@ foreach ($targets as $target) {
             break; 
         }
         $receivedpath = $blobparser->find('ul',0)->find('li',6);
+        echo $receivedpath->plaintext . "\n";
         $date_received = date($date_format,strtotime(trim(html_entity_decode(str_replace('<B>Application Received: </B>','',$receivedpath->plaintext)),ENT_QUOTES)));
         $date_scraped = date($date_format);
         $on_notice_from = $date_received;
