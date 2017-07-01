@@ -40,7 +40,7 @@ foreach ($targets as $target) {
         $lng = $point[0];
         
         $blob = (string)$item->description;
-        $blobparser = new simple_html_don();
+        $blobparser = new simple_html_dom();
         $blobparser->load($blob);
         
         $statuspath = $parsethis->find('ul',0)->find('li',5);
