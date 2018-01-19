@@ -38,13 +38,12 @@ foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) 
 }
 unset($dom,$html);
 
-print_r($targets);
-echo "\n\n";
 
 // Collect KML embedded in those URLs
 $kmls = array();
 foreach ($targets as $target) {
     $fetch = file_get_contents($target);
+    echo getKML($fetch) . "\n";
     $kml =  simplexml_load_file(getKML($fetch));
 
     foreach ($kml->Document->Folder->Placemark as $item) {
