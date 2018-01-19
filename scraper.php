@@ -119,9 +119,10 @@ echo "....done.\n";
 
 
 function getKML($html) {
-    $tempA = explode("mapalerter.ie\/maie\/kml\/",$html);
-    $tempB = explode('"]',$tempA[1]);
-    return 'http://www.mapalerter.ie/maie/kml/' . $tempB[0];
+    $tempA = explode("www.mapalerter.com\/kml\/alerts\/",$html);
+    
+    $tempB = explode("',",$tempA[1]);
+    return 'https://www.mapalerter.com/kml/alerts/' . $tempB[0];
 }
 
 ?>
