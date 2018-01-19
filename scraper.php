@@ -38,6 +38,9 @@ foreach ($dom->find("table th a[style='color: #590f56 !important;']") as $item) 
 }
 unset($dom,$html);
 
+print_r($targets);
+echo "\n\n";
+
 // Collect KML embedded in those URLs
 $kmls = array();
 foreach ($targets as $target) {
