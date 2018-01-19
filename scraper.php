@@ -118,8 +118,8 @@ echo "....done.\n";
 
 function getKML($html) {
     $tempA = explode('www.mapalerter.com/kml/alerts/',$html);
-    echo $tempA[1]; die();    
     $tempB = explode("',",$tempA[1]);
+    echo 'https://www.mapalerter.com/kml/alerts/' . $tempB[0];
     return 'https://www.mapalerter.com/kml/alerts/' . $tempB[0];
 }
 
