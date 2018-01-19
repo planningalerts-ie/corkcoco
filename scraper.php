@@ -43,7 +43,6 @@ unset($dom,$html);
 $kmls = array();
 foreach ($targets as $target) {
     $fetch = file_get_contents($target);
-    echo getKML($fetch) . "\n";
     $kml =  simplexml_load_file(getKML($fetch));
 
     foreach ($kml->Document->Folder->Placemark as $item) {
@@ -119,7 +118,7 @@ echo "....done.\n";
 
 function getKML($html) {
     $tempA = explode("www.mapalerter.com\/kml\/alerts\/",$html);
-    
+    echo $tempA[1]; die();    
     $tempB = explode("',",$tempA[1]);
     return 'https://www.mapalerter.com/kml/alerts/' . $tempB[0];
 }
