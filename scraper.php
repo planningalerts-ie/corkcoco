@@ -41,6 +41,8 @@ unset($dom,$html);
 
 // Collect KML embedded in those URLs
 $kmls = array();
+print_r($targets);
+echo "\n";
 foreach ($targets as $target) {
     $fetch = file_get_contents($target);
     $kml =  simplexml_load_file(getKML($fetch));
